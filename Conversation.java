@@ -5,7 +5,6 @@ class Conversation implements ConversationRequirements {
 
   // Attributes 
 
-
   
   /**
    * Constructor 
@@ -15,13 +14,21 @@ class Conversation implements ConversationRequirements {
     System.out.println("How many rounds?");
     int rounds = scanner.nextInt();
     System.out.println("You chose " + rounds + " rounds");
+    String[] responseStrings = new String[] {"Hmm", "Wow", "Nice", "Great", "Cool"};
+
     }
   
   /**
    * Starts and runs the conversation with the user
    */
-  public void chat() {
-
+  public void chat(int rounds) {
+    Scanner scanner = new Scanner(System.in);
+    for (int i = 0; i < rounds; i++)
+    {
+    System.out.println("Hello! How are you?");
+    String inputString = scanner.nextLine();
+    System.out.println("Hm..");
+    }
   }
 
   /**
@@ -36,7 +43,7 @@ class Conversation implements ConversationRequirements {
    * @param inputString the users last line of input
    * @return mirrored or canned response to user input  
    */
-  public String respond(String inputString) {
+  public String respond(String inputString, String responseString) {
     String returnString = ""; 
     return returnString; 
   }
@@ -44,7 +51,7 @@ class Conversation implements ConversationRequirements {
   public static void main(String[] arguments) {
 
     Conversation myConversation = new Conversation();
-    myConversation.chat();
+    myConversation.chat(5);
     myConversation.printTranscript();
 
   }

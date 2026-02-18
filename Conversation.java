@@ -25,13 +25,13 @@ class Conversation implements ConversationRequirements {
     userInput.nextLine();
     System.out.println("You chose " + rounds + " rounds");
     System.out.println("Hello! How are you?");
+    this.transcript.add("Hello! How are you?");
     for (int i = 0; i < rounds; i++)
     {
       String input = userInput.nextLine();
       this.transcript.add(input);
       System.out.println(respond(input));
       this.transcript.add(respond(input));
-      
     }
   }
 
@@ -39,8 +39,12 @@ class Conversation implements ConversationRequirements {
    * Prints transcript of conversation
    */
   public void printTranscript() {
-
-  System.out.print(this.transcript);
+    userInput.nextLine();
+    System.out.println("TRANSCRIPT: ");
+    for (int i = 0; i < this.transcript.size(); i++) {
+    System.out.println(this.transcript.get(i));
+    }
+    System.out.println("```");
   }
 
   /**
@@ -49,7 +53,6 @@ class Conversation implements ConversationRequirements {
    * @return mirrored or canned response to user input  
    */
   public String respond(String inputString) {
-    String[] cannedResponses = {"Nice", "Interesting", "Hm", "Wow"};
     String returnString = "Interesting!"; 
     return returnString; 
   }

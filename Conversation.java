@@ -1,31 +1,37 @@
 // You should **not** update any call signatures in this file
 // only modify the body of each function
+import java.util.ArrayList;
 import java.util.Scanner;
 class Conversation implements ConversationRequirements {
 
-  // Attributes 
-  Scanner scanner = new Scanner(System.in);
-  
+  // Attributes
+  ArrayList<String> transcript;
+  Scanner userInput = new Scanner(System.in);
   /**
    * Constructor 
    */
   Conversation() {
-    String[] keyWords = {"I", "Me", "Am", "You", "My", "Your"};
+    transcript = new ArrayList<>();
+    
     }
   
   /**
    * Starts and runs the conversation with the user
    */
   public void chat() {
+    Scanner userInput = new Scanner(System.in);
     System.out.println("How many rounds?");
-    int rounds = scanner.nextInt();
+    int rounds = userInput.nextInt();
+    userInput.nextLine();
     System.out.println("You chose " + rounds + " rounds");
     System.out.println("Hello! How are you?");
     for (int i = 0; i < rounds; i++)
     {
-      String inputString = scanner.nextLine();
-      this.respond(inputString);
-      System.out.println(this.respond(inputString));
+      String input = userInput.nextLine();
+      this.transcript.add(input);
+      System.out.println(respond(input));
+      this.transcript.add(respond(input));
+      
     }
   }
 
@@ -34,6 +40,7 @@ class Conversation implements ConversationRequirements {
    */
   public void printTranscript() {
 
+  System.out.print(this.transcript);
   }
 
   /**
@@ -42,6 +49,7 @@ class Conversation implements ConversationRequirements {
    * @return mirrored or canned response to user input  
    */
   public String respond(String inputString) {
+    String[] cannedResponses = {"Nice", "Interesting", "Hm", "Wow"};
     String returnString = "Interesting!"; 
     return returnString; 
   }

@@ -30,12 +30,14 @@ class Conversation implements ConversationRequirements {
     {
       String input = userInput.nextLine();
       this.transcript.add(input);
-      System.out.println(respond(input));
-      this.transcript.add(respond(input));
+      String s = respond(input);
+      System.out.println(s);
+      this.transcript.add(s);
     }
     System.out.println("See you next time!");
     this.transcript.add("See you next time!");
     System.out.println();
+    userInput.close();
   }
 
   /**
@@ -56,13 +58,37 @@ class Conversation implements ConversationRequirements {
    */
   public String respond(String inputString) {
     String returnString = "";
-    // Array of default/canned responses
-    String [] chatResponse = {"Oh nice!", "Interesting!", "Hm..", "I see!", "Right"};
-    // Picks a random response from the array
-    int index = (int) (Math.random() * chatResponse.length);
-
-    returnString = chatResponse[index];
-    return returnString; 
+    String regex = "[,\\.\\s\\?\\!]";
+    String[] inputWords = inputString.split(regex);
+    for(int i =0; i<inputWords.length;i++){
+      if(inputWords[i].equalsIgnoreCase("I")){
+        inputWords[i] = "you";
+      }
+      else if(inputWords[i].equalsIgnoreCase("Me")){
+        inputWords[i] = "you";
+      }
+      else if(inputWords[i].equalsIgnoreCase("Am")){
+        inputWords[i] = "are";
+      }
+      else if(inputWords[i].equalsIgnoreCase("Are")){
+        inputWords[i] = "am";
+      }
+      else if(inputWords[i].equalsIgnoreCase("You")){
+        inputWords[i] = "I";
+      }
+      else if(inputWords[i].equalsIgnoreCase("My")){
+        inputWords[i] = "your";
+      }
+      else if(inputWords[i].equalsIgnoreCase("Your")){
+        inputWords[i] = "my";
+      }
+    }
+    // // Array of default/canned responses
+    // String [] chatResponse = {"Oh nice!", "Interesting!", "Hm..", "I see!", "Right"};
+    // // Picks a random response from the array
+    // int index = (int) (Math.random() * chatResponse.length);
+    returnString = String.join(" ", inputWords);
+    return returnString;
   }
 
   public static void main(String[] arguments) {
